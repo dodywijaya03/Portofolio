@@ -1,383 +1,735 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dody Wijaya - Portfolio</title>
-<!-- Google Fonts untuk tampilan font premium -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-<!-- FontAwesome untuk ikon media sosial di footer -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pride - Personal Interactive Profile</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts: Syne & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
-<style>
-/* --- RESET & GLOBAL STYLES --- */
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandBlue: '#1B00F5',
+            brandYellow: '#FFE600',
+            brandDark: '#0C0628',
+            brandCard: '#130B3A',
+            brandRed: '#FF2A55'
+          },
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            outfit: ['Outfit', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
 
-body {
-font-family: 'Plus Jakarta Sans', sans-serif;
-color: #1e4b82; /* Warna teks biru gelap */
-background-color: #f7b1b6; /* Warna pink pastel utama */
-line-height: 1.6;
-}
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
 
-h1, h2, h3 {
-font-family: 'Syne', sans-serif;
-font-weight: 800;
-text-transform: uppercase;
-letter-spacing: 0.5px;
-}
+    /* 1. Floating & Rotation Animations */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(1.5deg); }
+    }
 
-p {
-font-size: 0.95rem;
-color: #1e4b82;
-}
+    @keyframes floatReverse {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(12px) rotate(-2deg); }
+    }
 
-.container {
-max-width: 1100px;
-margin: 0 auto;
-padding: 60px 20px;
-}
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
 
-/* --- SECTION 1: HERO --- */
-.hero-section {
-display: flex;
-align-items: center;
-justify-content: space-between;
-gap: 40px;
-padding-top: 40px;
-}
+    .img-float {
+      animation: floatSlow 5s ease-in-out infinite;
+    }
 
-.hero-text {
-flex: 1.2;
-}
+    .img-float-reverse {
+      animation: floatReverse 6s ease-in-out infinite;
+    }
 
-.hero-text h1 {
-font-size: 3.5rem;
-margin-bottom: 20px;
-line-height: 1.05;
-}
+    .badge-spin {
+      animation: spinSlow 12s linear infinite;
+    }
 
-.hero-text .tags {
-font-weight: 600;
-font-size: 1.1rem;
-margin-bottom: 40px;
-line-height: 1.4;
-}
+    /* 2. Animasi Lampu Bohlam Bersinar & Melayang */
+    @keyframes bulbFloatMove {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-16px) rotate(4deg);
+      }
+    }
 
-.hero-text a {
-color: #1e4b82;
-text-decoration: underline;
-font-weight: 700;
-transition: opacity 0.2s ease;
-}
+    @keyframes raysGlowPulse {
+      0%, 100% {
+        opacity: 0.45;
+        stroke-width: 4;
+        filter: drop-shadow(0 0 2px #FFE600);
+        transform: scale(0.92);
+      }
+      50% {
+        opacity: 1;
+        stroke-width: 6;
+        filter: drop-shadow(0 0 12px #FFE600) drop-shadow(0 0 22px #FF8C00);
+        transform: scale(1.15);
+      }
+    }
 
-.hero-text a:hover {
-opacity: 0.7;
-}
+    @keyframes bulbBodyGlow {
+      0%, 100% {
+        filter: drop-shadow(0 0 8px rgba(255, 230, 0, 0.7));
+      }
+      50% {
+        filter: drop-shadow(0 0 28px rgba(255, 230, 0, 1)) drop-shadow(0 0 45px rgba(255, 140, 0, 0.8));
+      }
+    }
 
-.hero-img {
-flex: 0.8;
-text-align: right;
-}
+    .animated-bulb-wrapper {
+      animation: bulbFloatMove 3.8s ease-in-out infinite;
+    }
 
-.hero-img img {
-width: 100%;
-max-width: 380px;
-border-radius: 4px;
-object-fit: cover;
-display: inline-block;
-}
+    .animated-rays-group {
+      transform-origin: 50px 40px;
+      animation: raysGlowPulse 1.6s ease-in-out infinite;
+    }
 
-/* --- SECTION 2: WHO I AM --- */
-.about-section {
-display: flex;
-align-items: center;
-gap: 60px;
-padding-top: 40px;
-padding-bottom: 40px;
-}
+    .animated-bulb-body {
+      animation: bulbBodyGlow 2.2s ease-in-out infinite;
+    }
 
-.about-img {
-flex: 0.7;
-}
-
-.about-img img {
-width: 100%;
-max-width: 240px;
-border-radius: 4px;
-}
-
-.about-text {
-flex: 1.3;
-}
-
-.about-text h2 {
-font-size: 2.5rem;
-margin-bottom: 25px;
-line-height: 1.1;
-}
-
-.about-text p {
-margin-bottom: 15px;
-text-align: justify;
-}
-
-/* --- SECTION 3: COMPANIES (WHITE BACKGROUND) --- */
-.companies-section {
-background-color: #ffffff;
-text-align: center;
-padding: 80px 20px;
-}
-
-.companies-section h2 {
-font-size: 2rem;
-max-width: 850px;
-margin: 0 auto 50px auto;
-line-height: 1.3;
-color: #1e4b82;
-}
-
-.logos-container {
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 60px;
-flex-wrap: wrap;
-}
-
-.logos-container img {
-max-height: 45px;
-width: auto;
-object-fit: contain;
-}
-
-/* --- SECTION 4: CLIENT OPINION --- */
-.testimonial-section {
-display: flex;
-align-items: center;
-gap: 60px;
-padding-top: 60px;
-padding-bottom: 60px;
-}
-
-.testimonial-text {
-flex: 1.1;
-}
-
-.testimonial-text h2 {
-font-size: 2.5rem;
-line-height: 1.1;
-}
-
-.testimonial-text h3 {
-font-size: 2.5rem;
-margin-bottom: 35px;
-}
-
-.testimonial-text p {
-font-style: italic;
-margin-bottom: 20px;
-font-size: 1rem;
-}
-
-.testimonial-author {
-font-size: 0.9rem;
-font-weight: 700;
-}
-
-.testimonial-img {
-flex: 0.9;
-}
-
-.testimonial-img img {
-width: 100%;
-border-radius: 4px;
-object-fit: cover;
-}
-
-/* --- SECTION 5: CONTACT ME (BLUE BACKGROUND) --- */
-.footer-section {
-background-color: #3b6b9c;
-color: #ffffff;
-padding: 80px 20px 40px 20px;
-}
-
-.footer-container {
-max-width: 1100px;
-margin: 0 auto;
-}
-
-.footer-section h2 {
-font-size: 2.5rem;
-margin-bottom: 50px;
-color: #ffffff;
-}
-
-.footer-grid {
-display: flex;
-justify-content: space-between;
-flex-wrap: wrap;
-gap: 40px;
-border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-padding-bottom: 50px;
-margin-bottom: 30px;
-}
-
-.footer-col h4 {
-font-size: 0.85rem;
-text-transform: uppercase;
-letter-spacing: 1px;
-margin-bottom: 12px;
-color: rgba(255, 255, 255, 0.7);
-font-weight: 600;
-}
-
-.footer-col p {
-font-size: 1.1rem;
-color: #ffffff;
-font-weight: 600;
-}
-
-.footer-socials {
-display: flex;
-gap: 20px;
-}
-
-.footer-socials a {
-color: #ffffff;
-text-decoration: none;
-font-size: 1.3rem;
-transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.footer-socials a:hover {
-transform: translateY(-3px);
-opacity: 0.8;
-}
-
-/* --- RESPONSIVE LAYOUT (MOBILE) --- */
-@media (max-width: 768px) {
-.container {
-padding: 40px 20px;
-}
-.hero-section, .about-section, .testimonial-section {
-flex-direction: column;
-text-align: center;
-}
-.hero-text h1, .about-text h2, .testimonial-text h2, .testimonial-text h3, .footer-section h2 {
-font-size: 2.2rem;
-}
-.hero-img, .about-img, .testimonial-img {
-text-align: center;
-order: -1; /* Memastikan gambar muncul di atas teks pada mobile */
-width: 100%;
-}
-.hero-img img, .about-img img, .testimonial-img img {
-max-width: 100%;
-}
-.about-text p {
-text-align: center;
-}
-.footer-grid {
-flex-direction: column;
-gap: 25px;
-align-items: center;
-text-align: center;
-}
-.footer-socials {
-justify-content: center;
-}
-}
-</style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0C0628;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #FFE600;
+      border-radius: 4px;
+    }
+  </style>
 </head>
-<body>
+<body class="bg-brandDark text-white selection:bg-brandYellow selection:text-black">
 
-<!-- SECTION 1: HERO -->
-<div class="container">
-<section class="hero-section">
-<div class="hero-text">
-<h1>HI, I AM<br>DODY WIJAYA</h1>
-<hr style="border: none; border-top: 3px solid #1e4b82; width: 120px; margin-bottom: 25px;">
-<p class="tags">WebApps | Enterprise Solutions | Business Development | Partnerships | Data Annotation</p>
-<a href="https://www.linkedin.com/in/dody-w-a049119a/" target="_blank">View My Portfolio</a>
-</div>
-<div class="hero-img">
-<img src="https://lh3.googleusercontent.com/d/13Rlw8IMieH2bOrbISDBrG3IIJ9-Hd2Sc" alt="Dody Wijaya Hero">
-</div>
-</section>
-</div>
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 bg-brandDark/90 backdrop-blur-md border-b border-white/10 transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="#home" class="text-3xl font-syne font-extrabold tracking-wider text-white hover:text-brandYellow transition">
+        Pride
+      </a>
 
-<!-- SECTION 2: WHO I AM -->
-<div class="container">
-<section class="about-section">
-<div class="about-img">
-<img src="https://lh3.googleusercontent.com/d/1ly8Vh6g9WG1LQ_6qhNcgGPcN9y_RY9mE" alt="Dody Wijaya Mini">
-</div>
-<div class="about-text">
-<h2>Who I Am and What I Do</h2>
-<p><strong>My name is Dody Wijaya.</strong></p>
-<p>I am a results-oriented professional with a strategic mindset and over 12 years of experience in the telecommunications and corporate ICT industries—including a long, high-performing tenure at PT Indosat Tbk. My expertise lies in formulating commercial strategies, executing high-value business deals, and developing comprehensive financial models (business cases). I am also highly proficient in end-to-end solution architecture and C-level stakeholder management. I am ready to leverage my strong commercial acumen, pricing strategy expertise, and cross-functional leadership to accelerate portfolio growth and ARPU for Home Broadband services (FTTH & FWA).</p>
-</div>
-</section>
-</div>
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold uppercase tracking-wider">
+        <a href="#home" class="text-brandYellow transition">HOME</a>
+        <div class="relative group cursor-pointer">
+          <a href="#about" class="hover:text-brandYellow transition flex items-center gap-1">
+            ABOUT <i class="fa-solid fa-chevron-down text-xs"></i>
+          </a>
+          <div class="absolute top-full left-0 hidden group-hover:block w-40 bg-brandCard p-2 rounded-lg shadow-xl border border-white/10 mt-2">
+            <a href="#skills" class="block px-4 py-2 hover:bg-brandBlue rounded text-xs">SKILLS & ED</a>
+          </div>
+        </div>
+        <a href="#services" class="hover:text-brandYellow transition">SERVICES</a>
+        <a href="#portfolio" class="hover:text-brandYellow transition">PORTFOLIO</a>
+        <a href="#blogs" class="hover:text-brandYellow transition">BLOGS</a>
+        <a href="#contact" class="hover:text-brandYellow transition">CONTACT ME</a>
+      </nav>
 
-<!-- SECTION 3: COMPANIES -->
-<section class="companies-section">
-<div class="container">
-<h2>I AM FORTUNATE TO HAVE HAD THE OPPORTUNITY TO WORK WITH A NUMBER OF THESE COMPANIES.</h2>
-<div class="logos-container">
-<img src="https://lh3.googleusercontent.com/d/13pc_F6cDBMlVclurLzD8rJg9-Z2LUtKg" alt="Indosat">
-<img src="https://lh3.googleusercontent.com/d/11SwIZ7LbbZtUUaA8oLi-BhYxWjMDMc7i" alt="Telkomsigma">
-<img src="https://lh3.googleusercontent.com/d/1SheFywoKEOJOCjm5UldhX01s2eLdPZmu" alt="Telkom Indonesia">
-</div>
-</div>
-</section>
+      <!-- CTA Button -->
+      <div class="hidden md:block">
+        <a href="#contact" class="px-6 py-3 bg-brandYellow text-black font-bold uppercase text-xs tracking-widest hover:bg-white hover:scale-105 transition transform duration-200">
+          CONTACT US
+        </a>
+      </div>
 
-<!-- SECTION 4: CLIENT OPINION -->
-<div class="container">
-<section class="testimonial-section">
-<div class="testimonial-text">
-<h2>Opinion</h2>
-<h3>My Client</h3>
-<p>"Working with Dody has truly been a blessing. He stepped in and transformed our company through exceptional branding solutions. He devised a comprehensive ICT strategy that helped enhance our technological capabilities and strengthen our presence in the corporate connectivity sector."</p>
-<p class="testimonial-author">- Muhammad Danny Buldansyah<br><span style="font-weight: normal; opacity: 0.85;">Chief Business Officer - Indosat Ooredoo Hutchison (IOH)</span></p>
-</div>
-<div class="testimonial-img">
-<img src="https://lh3.googleusercontent.com/d/1C04p8ua7XpKPd4hE-uQF0o9TfG8wk07B" alt="Dody Client Opinion Image">
-</div>
-</section>
-</div>
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden text-2xl text-white focus:outline-none">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
 
-<!-- SECTION 5: CONTACT ME -->
-<footer class="footer-section">
-<div class="footer-container">
-<h2>CONTACT ME</h2>
-<div class="footer-grid">
-<div class="footer-col">
-<h4>My address</h4>
-<p>Jl. Palmerah, West Jakarta 11480</p>
-</div>
-<div class="footer-col">
-<h4>Email</h4>
-<p>dodywijaya03@gmail.com</p>
-</div>
-<div class="footer-col">
-<h4>Mobile phone</h4>
-<p>+62-8131-5157-299</p>
-</div>
-</div>
-<div class="footer-socials">
-<a href="#" target="_blank" title="Website"><i class="fa-solid fa-globe"></i></a>
-<a href="#" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-</div>
-</div>
-</footer>
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenu" class="hidden md:hidden bg-brandCard px-6 py-6 border-b border-white/10 space-y-4">
+      <a href="#home" class="block text-brandYellow font-bold">HOME</a>
+      <a href="#about" class="block hover:text-brandYellow">ABOUT</a>
+      <a href="#services" class="block hover:text-brandYellow">SERVICES</a>
+      <a href="#portfolio" class="block hover:text-brandYellow">PORTFOLIO</a>
+      <a href="#blogs" class="block hover:text-brandYellow">BLOGS</a>
+      <a href="#contact" class="block hover:text-brandYellow">CONTACT ME</a>
+      <a href="#contact" class="inline-block mt-2 px-6 py-3 bg-brandYellow text-black font-bold text-xs uppercase">CONTACT US</a>
+    </div>
+  </header>
 
+  <!-- HERO SECTION -->
+  <section id="home" class="relative min-h-[calc(100vh-80px)] grid grid-cols-1 lg:grid-cols-12 overflow-hidden">
+    
+    <!-- Hero Left: Blue Section -->
+    <div class="lg:col-span-7 bg-brandBlue p-8 sm:p-12 lg:p-20 flex flex-col justify-center relative">
+      
+      <!-- Rotating Circular Badge Icon -->
+      <div class="relative mb-6 w-28 h-28 flex items-center justify-center">
+        <svg class="absolute inset-0 w-full h-full badge-spin" viewBox="0 0 100 100">
+          <path id="circlePath" fill="none" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
+          <text class="text-[9px] uppercase font-bold fill-white tracking-widest">
+            <textPath href="#circlePath">ENTERPRISE • CONSULTANT & SOLUTION •</textPath>
+          </text>
+        </svg>
+        <div class="w-10 h-10 bg-brandYellow rounded-full flex items-center justify-center text-black font-bold text-xs shadow-lg">
+          <i class="fa-solid fa-play"></i>
+        </div>
+      </div>
+
+      <!-- Greeting Subtitle -->
+      <p class="text-lg font-medium text-white/90 mb-2 flex items-center gap-2">
+        <span class="w-6 h-[2px] bg-white inline-block"></span> Hey, I AM Dody wijaya...
+      </p>
+
+      <!-- Main Title -->
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-syne font-black leading-tight uppercase mb-6 text-white tracking-tight">
+        BEST CONSULTANT & SOLUTION <br> <span class="text-white">FOR YOU</span>
+      </h1>
+
+      <p class="text-white/80 max-w-lg mb-8 text-sm sm:text-base leading-relaxed">
+        I provide consulting and solutions services for customers of all sizes, specializing in the enterprise ICT industry. Committed to driving growth and enhancing operational efficiency through innovative solutions.
+      </p>
+
+      <!-- Download CV Action Button -->
+      <div class="flex items-center gap-6">
+        <button onclick="handleDownloadCV()" class="px-7 py-3.5 bg-brandYellow text-black font-extrabold text-xs uppercase tracking-wider hover:bg-white transition transform hover:-translate-y-1 shadow-2xl flex items-center gap-2">
+          <i class="fa-solid fa-file-arrow-down"></i> DOWNLOAD CV
+        </button>
+      </div>
+
+      <!-- ELEMEN BOHLAM BERSINAR & BERGERAK -->
+      <div class="absolute bottom-6 left-6 z-20 animated-bulb-wrapper cursor-pointer group" 
+           onclick="triggerBulbIdea(this)" 
+           title="Klik untuk inspirasi!">
+        
+        <div class="relative w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center">
+          <div class="absolute inset-0 bg-brandYellow/20 rounded-full blur-2xl group-hover:bg-brandYellow/50 transition duration-500"></div>
+
+          <svg class="w-full h-full text-brandYellow transform group-hover:scale-110 transition duration-300" 
+               viewBox="0 0 100 100" 
+               fill="none" 
+               xmlns="http://www.w3.org/2000/svg">
+            
+            <!-- Sinar Cahaya Radiating Rays -->
+            <g class="animated-rays-group" stroke="#FFE600" stroke-linecap="round">
+              <line x1="50" y1="20" x2="50" y2="6" />
+              <line x1="64" y1="26" x2="75" y2="15" />
+              <line x1="70" y1="40" x2="84" y2="40" />
+              <line x1="64" y1="54" x2="74" y2="64" />
+              <line x1="36" y1="54" x2="26" y2="64" />
+              <line x1="30" y1="40" x2="16" y2="40" />
+              <line x1="36" y1="26" x2="25" y2="15" />
+            </g>
+
+            <!-- Badan Lampu & Fitting -->
+            <g class="animated-bulb-body">
+              <path d="M36 53 C28 46, 28 32, 38 23 C48 14, 62 18, 65 30 C67 39, 62 47, 54 53 C52 58, 52 63, 52 66 L38 66 C38 63, 38 58, 36 53 Z" 
+                    fill="#FFE600" 
+                    stroke="#FFF566" 
+                    stroke-width="2" />
+              
+              <path d="M40 27 C45 22, 53 22, 56 25" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.85" />
+              <circle cx="43" cy="32" r="2.5" fill="#FFFFFF" opacity="0.9" />
+
+              <rect x="39" y="67" width="12" height="4" rx="1.5" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1" />
+              <rect x="41" y="72" width="8" height="3" rx="1" fill="#9CA3AF" />
+              <path d="M43 76 L47 76 L45 79 Z" fill="#4B5563" />
+            </g>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Hero Right: Yellow Section -->
+    <div class="lg:col-span-5 bg-brandYellow p-8 sm:p-12 flex items-end justify-center relative min-h-[450px]">
+      
+      <!-- Interactive Floating Portrait -->
+      <div class="relative z-10 img-float max-w-xs sm:max-w-md">
+        <img src="https://drive.google.com/file/d/13Rlw8IMieH2bOrbISDBrG3IIJ9-Hd2Sc/view?auto=format&fit=crop&w=800&q=80" 
+             alt="Dody Wijaya Profile" 
+             class="w-full h-auto object-cover rounded-3xl shadow-2xl border-4 border-black/10 transform hover:scale-105 transition duration-500 cursor-pointer">
+      </div>
+
+      <!-- HERO SOCIAL MEDIA LINKS -->
+      <div class="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-20">
+        <a href="<?= PROFILE_CONFIG.socials.linkedIn ?>" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="w-9 h-9 rounded-full bg-black/10 hover:bg-black hover:text-brandYellow flex items-center justify-center transition text-sm"><i class="fa-brands fa-linkedIn-f"></i></a>
+        <a href="<?= PROFILE_CONFIG.socials.instagram ?>" target="_blank" rel="noopener noreferrer" title="Instagram" class="w-9 h-9 rounded-full bg-black/10 hover:bg-black hover:text-brandYellow flex items-center justify-center transition text-sm"><i class="fa-brands fa-instagram"></i></a>
+        <a href="<?= PROFILE_CONFIG.socials.tiktok ?>" target="_blank" rel="noopener noreferrer" title="Tiktok" class="w-9 h-9 rounded-full bg-black/10 hover:bg-black hover:text-brandYellow flex items-center justify-center transition text-sm"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: ABOUT & STATS -->
+  <section id="about" class="py-20 bg-white text-black relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <div class="lg:col-span-5 relative">
+        <div class="relative mx-auto max-w-sm img-float-reverse">
+          <div class="absolute inset-0 border-2 border-dashed border-brandBlue rounded-full transform -rotate-6 scale-105"></div>
+          <img src="https://drive.google.com/file/d/1C04p8ua7XpKPd4hE-uQF0o9TfG8wk07B/view?fit=crop&w=800&q=80" 
+               alt="About Portrait" 
+               class="rounded-3xl shadow-2xl relative z-10 w-full object-cover aspect-[4/5] hover:scale-105 transition duration-500">
+        </div>
+      </div>
+
+      <div class="lg:col-span-7">
+        <h2 class="text-4xl sm:text-5xl font-syne font-black mb-6 leading-tight">
+          Ready to discuss your project?
+        </h2>
+        <p class="text-gray-600 mb-8 leading-relaxed">
+          Let's discuss your business needs, technical requirements, and key challenges so that I can design a solution that delivers measurable results and long-term value.
+        </p>
+
+        <div class="grid grid-cols-2 gap-8 border-t border-gray-200 pt-6">
+          <div class="flex items-center gap-4">
+            <span class="text-5xl font-syne font-extrabold text-brandRed">100+</span>
+            <span class="text-xs font-bold uppercase text-gray-500 leading-tight">Projects<br>Completed</span>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="text-5xl font-syne font-extrabold text-brandRed">12+</span>
+            <span class="text-xs font-bold uppercase text-gray-500 leading-tight">Years of<br>Experience</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: SERVICES -->
+  <section id="services" class="py-20 bg-brandYellow text-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl sm:text-5xl font-syne font-black uppercase">Awesome Services for clients</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-brandDark text-white p-8 hover:-translate-y-2 transition duration-300 border border-white/10 group cursor-pointer">
+          <div class="text-brandRed text-4xl mb-6 group-hover:scale-110 transition"><i class="fa-solid fa-laptop-code"></i></div>
+          <h3 class="text-xl font-bold font-syne mb-3">Web Development</h3>
+          <p class="text-gray-400 text-sm mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusm</p>
+          <button onclick="showServiceModal('Web Development')" class="text-xs font-extrabold uppercase text-brandRed hover:text-white flex items-center gap-2">READ MORE <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+        <div class="bg-brandDark text-white p-8 hover:-translate-y-2 transition duration-300 border border-white/10 group cursor-pointer">
+          <div class="text-brandRed text-4xl mb-6 group-hover:scale-110 transition"><i class="fa-solid fa-layer-group"></i></div>
+          <h3 class="text-xl font-bold font-syne mb-3">UI/UX Design</h3>
+          <p class="text-gray-400 text-sm mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusm</p>
+          <button onclick="showServiceModal('UI/UX Design')" class="text-xs font-extrabold uppercase text-brandRed hover:text-white flex items-center gap-2">READ MORE <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+        <div class="bg-brandDark text-white p-8 hover:-translate-y-2 transition duration-300 border border-white/10 group cursor-pointer">
+          <div class="text-brandRed text-4xl mb-6 group-hover:scale-110 transition"><i class="fa-solid fa-chart-line"></i></div>
+          <h3 class="text-xl font-bold font-syne mb-3">SEO & Marketing</h3>
+          <p class="text-gray-400 text-sm mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusm</p>
+          <button onclick="showServiceModal('SEO & Marketing')" class="text-xs font-extrabold uppercase text-brandRed hover:text-white flex items-center gap-2">READ MORE <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+        <div class="bg-brandDark text-white p-8 hover:-translate-y-2 transition duration-300 border border-white/10 group cursor-pointer">
+          <div class="text-brandRed text-4xl mb-6 group-hover:scale-110 transition"><i class="fa-solid fa-cube"></i></div>
+          <h3 class="text-xl font-bold font-syne mb-3">Product Design</h3>
+          <p class="text-gray-400 text-sm mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusm</p>
+          <button onclick="showServiceModal('Product Design')" class="text-xs font-extrabold uppercase text-brandRed hover:text-white flex items-center gap-2">READ MORE <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+        <div class="bg-brandDark text-white p-8 hover:-translate-y-2 transition duration-300 border border-white/10 group cursor-pointer">
+          <div class="text-brandRed text-4xl mb-6 group-hover:scale-110 transition"><i class="fa-solid fa-mobile-screen-button"></i></div>
+          <h3 class="text-xl font-bold font-syne mb-3">Apps Development</h3>
+          <p class="text-gray-400 text-sm mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusm</p>
+          <button onclick="showServiceModal('Apps Development')" class="text-xs font-extrabold uppercase text-brandRed hover:text-white flex items-center gap-2">READ MORE <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+        <div class="bg-brandDark text-white p-8 hover:-translate-y-2 transition duration-300 border border-white/10 group cursor-pointer">
+          <div class="text-brandRed text-4xl mb-6 group-hover:scale-110 transition"><i class="fa-solid fa-pen-nib"></i></div>
+          <h3 class="text-xl font-bold font-syne mb-3">Visual Design</h3>
+          <p class="text-gray-400 text-sm mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusm</p>
+          <button onclick="showServiceModal('Visual Design')" class="text-xs font-extrabold uppercase text-brandRed hover:text-white flex items-center gap-2">READ MORE <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: SKILLS & EDUCATION -->
+  <section id="skills" class="py-20 bg-brandBlue text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl sm:text-5xl font-syne font-black text-center mb-16 uppercase">My skill & Education</h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div>
+          <h3 class="text-2xl font-bold mb-8">My Skill:</h3>
+          <div class="space-y-6">
+            <div>
+              <div class="flex justify-between mb-2 font-bold text-sm"><span>HTML</span><span>85%</span></div>
+              <div class="w-full bg-blue-900 rounded-full h-2.5 overflow-hidden"><div class="bg-brandRed h-2.5 rounded-full transition-all duration-1000" style="width: 85%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2 font-bold text-sm"><span>WORDPRESS</span><span>75%</span></div>
+              <div class="w-full bg-blue-900 rounded-full h-2.5 overflow-hidden"><div class="bg-brandRed h-2.5 rounded-full transition-all duration-1000" style="width: 75%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2 font-bold text-sm"><span>JAVASCRIPT</span><span>95%</span></div>
+              <div class="w-full bg-blue-900 rounded-full h-2.5 overflow-hidden"><div class="bg-brandRed h-2.5 rounded-full transition-all duration-1000" style="width: 95%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2 font-bold text-sm"><span>UI/UX DESIGN</span><span>85%</span></div>
+              <div class="w-full bg-blue-900 rounded-full h-2.5 overflow-hidden"><div class="bg-brandRed h-2.5 rounded-full transition-all duration-1000" style="width: 85%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-8">
+          <div class="flex items-start gap-4">
+            <div class="text-brandRed text-2xl mt-1"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div><h4 class="text-xl font-bold">Web Development (2010-2012)</h4><p class="text-white/70 text-sm">International Design Institute</p></div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="text-brandRed text-2xl mt-1"><i class="fa-solid fa-award"></i></div>
+            <div><h4 class="text-xl font-bold">SEO Optimization (2010-2012)</h4><p class="text-white/70 text-sm">International Design Institute</p></div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="text-brandRed text-2xl mt-1"><i class="fa-solid fa-palette"></i></div>
+            <div><h4 class="text-xl font-bold">Graphic Designer (2010-2012)</h4><p class="text-white/70 text-sm">International Design Institute</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: PORTFOLIO -->
+  <section id="portfolio" class="py-20 bg-white text-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-wrap justify-center gap-3 mb-12">
+        <button onclick="filterPortfolio('all')" class="filter-btn active px-6 py-2.5 bg-black text-white font-bold text-xs uppercase tracking-widest transition">ALL PROJECT</button>
+        <button onclick="filterPortfolio('branding')" class="filter-btn px-6 py-2.5 bg-gray-100 hover:bg-black hover:text-white font-bold text-xs uppercase tracking-widest transition">BRANDING</button>
+        <button onclick="filterPortfolio('photography')" class="filter-btn px-6 py-2.5 bg-gray-100 hover:bg-black hover:text-white font-bold text-xs uppercase tracking-widest transition">PHOTOGRAPHY</button>
+        <button onclick="filterPortfolio('graphic')" class="filter-btn px-6 py-2.5 bg-gray-100 hover:bg-black hover:text-white font-bold text-xs uppercase tracking-widest transition">GRAPHIC</button>
+        <button onclick="filterPortfolio('web')" class="filter-btn px-6 py-2.5 bg-gray-100 hover:bg-black hover:text-white font-bold text-xs uppercase tracking-widest transition">WEB DESIGN</button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolioGrid">
+        <div class="portfolio-item graphic group relative overflow-hidden rounded-xl shadow-lg aspect-square bg-purple-900 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 img-float" alt="Graphic Project">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col items-center justify-center text-white p-6 text-center">
+            <span class="text-xs uppercase tracking-widest text-brandYellow mb-2 font-bold">GRAPHIC</span>
+            <h3 class="text-2xl font-syne font-bold">Abstract 3D Shape</h3>
+          </div>
+        </div>
+
+        <div class="portfolio-item branding web group relative overflow-hidden rounded-xl shadow-lg aspect-square bg-blue-900 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 img-float-reverse" alt="Branding Project">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col items-center justify-center text-white p-6 text-center">
+            <span class="text-xs uppercase tracking-widest text-brandYellow mb-2 font-bold">BRANDING</span>
+            <h3 class="text-2xl font-syne font-bold">WEB DEVELOPMENT</h3>
+          </div>
+        </div>
+
+        <div class="portfolio-item photography group relative overflow-hidden rounded-xl shadow-lg aspect-square bg-yellow-600 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 img-float" alt="Photography Project">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col items-center justify-center text-white p-6 text-center">
+            <span class="text-xs uppercase tracking-widest text-brandYellow mb-2 font-bold">PHOTOGRAPHY</span>
+            <h3 class="text-2xl font-syne font-bold">3D Geometric Art</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: TESTIMONIALS -->
+  <section class="py-20 bg-brandYellow text-black overflow-hidden relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-5 flex justify-center">
+        <div class="w-72 h-72 sm:w-80 sm:h-80 rounded-full border-4 border-black/20 overflow-hidden shadow-2xl img-float">
+          <img id="testimonialImg" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover" alt="Client">
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 bg-brandBlue text-white p-8 sm:p-12 shadow-2xl relative">
+        <div class="text-brandYellow text-4xl mb-4"><i class="fa-solid fa-quote-left"></i></div>
+        <p id="testimonialText" class="text-base sm:text-lg mb-6 leading-relaxed min-h-[100px]">
+          "Nancy boy Charles down the pub get stuffed mate easy peasy brown bread car boot squiffy too, blimey round cup of char horse play chimney pot old."
+        </p>
+        <h4 id="testimonialAuthor" class="text-2xl font-syne font-black uppercase text-brandYellow">KATRINA KAIEF</h4>
+        <span id="testimonialRole" class="text-xs uppercase font-bold text-gray-300 tracking-widest">DESIGNER</span>
+
+        <div class="flex gap-2 mt-8">
+          <button onclick="setTestimonial(0)" class="testi-dot w-3 h-3 rounded-full bg-brandYellow transition"></button>
+          <button onclick="setTestimonial(1)" class="testi-dot w-3 h-3 rounded-full bg-white/40 transition"></button>
+          <button onclick="setTestimonial(2)" class="testi-dot w-3 h-3 rounded-full bg-white/40 transition"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: CONTACT FORM -->
+  <section id="contact" class="py-20 bg-brandBlue text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <div class="lg:col-span-7 bg-brandDark p-8 sm:p-12 shadow-2xl border border-white/10">
+        <h2 class="text-3xl font-syne font-black mb-8">Contact With Me</h2>
+        
+        <form id="contactForm" onsubmit="submitForm(event)" class="space-y-4">
+          <input type="text" id="formName" required placeholder="Name" class="w-full px-4 py-3 bg-brandCard border border-white/10 text-white focus:outline-none focus:border-brandYellow transition">
+          <input type="email" id="formEmail" required placeholder="Email" class="w-full px-4 py-3 bg-brandCard border border-white/10 text-white focus:outline-none focus:border-brandYellow transition">
+          <input type="text" id="formSubject" required placeholder="Subject" class="w-full px-4 py-3 bg-brandCard border border-white/10 text-white focus:outline-none focus:border-brandYellow transition">
+          <textarea id="formMessage" rows="4" required placeholder="Write your message" class="w-full px-4 py-3 bg-brandCard border border-white/10 text-white focus:outline-none focus:border-brandYellow transition"></textarea>
+          
+          <button type="submit" id="submitBtn" class="px-8 py-3.5 bg-brandYellow text-black font-extrabold text-xs uppercase tracking-widest hover:bg-white transition transform">
+            SEND MESSAGE
+          </button>
+        </form>
+        
+        <div id="formStatus" class="mt-4 text-sm font-bold hidden"></div>
+      </div>
+
+      <div class="lg:col-span-5 relative">
+        <div class="relative overflow-hidden rounded-2xl shadow-2xl img-float">
+          <img src="https://drive.google.com/file/d/13Rlw8IMieH2bOrbISDBrG3IIJ9-Hd2Sc/view?auto=format&fit=crop&w=800&q=80" alt="Contact Portrait" class="w-full h-auto object-cover">
+          <div class="absolute bottom-6 left-6 bg-black/80 backdrop-blur-md px-6 py-3 rounded-full flex items-center gap-3 text-white">
+            <i class="fa-solid fa-phone text-brandYellow"></i>
+            <span class="font-bold text-sm">+062 813 1515 7299</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 8: BLOGS -->
+  <section id="blogs" class="py-20 bg-white text-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl font-syne font-black text-center mb-12">Check Latest Blog</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md group cursor-pointer hover:shadow-xl transition">
+          <div class="h-56 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Blog 1">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-4 text-xs font-bold mb-3">
+              <span class="px-3 py-1 bg-brandRed text-white uppercase">DEVELOPMENT</span>
+              <span class="text-gray-400">FEB 9, 2026</span>
+            </div>
+            <h3 class="text-xl font-bold font-syne mb-2 group-hover:text-brandBlue transition">OVERRIDE THE DIGITAL DIVIDE WITH ADD RELATIONSHIP BUILD</h3>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md group cursor-pointer hover:shadow-xl transition">
+          <div class="h-56 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Blog 2">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-4 text-xs font-bold mb-3">
+              <span class="px-3 py-1 bg-brandRed text-white uppercase">DESIGNER</span>
+              <span class="text-gray-400">FEB 9, 2026</span>
+            </div>
+            <h3 class="text-xl font-bold font-syne mb-2 group-hover:text-brandBlue transition">There are many variations of passages of Lorem Ipsum available</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FOOTER BANNER -->
+  <section class="py-16 bg-brandBlue text-white text-center">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-4xl sm:text-5xl font-syne font-black mb-4">Let's build something together</h2>
+      <p class="text-white/80 max-w-xl mx-auto mb-8">At Dumty we specialize in designing, building, shipping and scaling beautiful products.</p>
+      <a href="#contact" class="inline-block px-8 py-4 bg-brandYellow text-black font-extrabold text-xs uppercase tracking-widest hover:bg-white transition transform hover:scale-105">
+        CONTACT US
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-brandDark text-white py-8 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-2xl font-syne font-black">Pride</div>
+      <div class="text-xs text-gray-400">© 2026 Pride. All Rights Reserved. Design By Dody Wijaya</div>
+      
+      <!-- FOOTER SOCIAL MEDIA LINKS -->
+      <div class="flex space-x-4 text-sm text-gray-400">
+        <a href="<?= PROFILE_CONFIG.socials.linkedIn ?>" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="hover:text-brandYellow transition"><i class="fa-brands fa-linkedIn-f"></i></a>
+        <a href="<?= PROFILE_CONFIG.socials.instagram ?>" target="_blank" rel="noopener noreferrer" title="Instagram" class="hover:text-brandYellow transition"><i class="fa-brands fa-instagram"></i></a>
+        <a href="<?= PROFILE_CONFIG.socials.tiktok ?>" target="_blank" rel="noopener noreferrer" title="Tiktok" class="hover:text-brandYellow transition"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Service Detail Modal -->
+  <div id="serviceModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-brandDark border border-white/20 text-white max-w-md w-full p-8 rounded-2xl relative shadow-2xl">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+      <h3 id="modalTitle" class="text-2xl font-syne font-bold mb-4 text-brandYellow">Service Title</h3>
+      <p class="text-gray-300 text-sm mb-6 leading-relaxed">Layanan ini mencakup pengembangan solusi digital end-to-end yang interaktif dan berkinerja tinggi.</p>
+      <button onclick="closeModal()" class="w-full py-3 bg-brandYellow text-black font-bold text-xs uppercase">Close</button>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE JAVASCRIPT -->
+  <script>
+    // Mobile Navigation Drawer Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+    // Service Modal Handler
+    function showServiceModal(title) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('serviceModal').classList.remove('hidden');
+    }
+    function closeModal() {
+      document.getElementById('serviceModal').classList.add('hidden');
+    }
+
+    // Portfolio Filtering
+    function filterPortfolio(category) {
+      const items = document.querySelectorAll('.portfolio-item');
+      items.forEach(item => {
+        if (category === 'all' || item.classList.contains(category)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Testimonial Carousel Data
+    const testimonials = [
+      {
+        quote: `"Nancy boy Charles down the pub get stuffed mate easy peasy brown bread car boot squiffy too, blimey round cup of char horse play chimney pot old."`,
+        author: "KATRINA KAIEF",
+        role: "DESIGNER",
+        img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        quote: `"Exceptional visual communication and fast delivery. The interface design exceeded our expectations and user engagement skyrocketed."`,
+        author: "MERATA BARON",
+        role: "APP DEVELOPER",
+        img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        quote: `"Clean, modern and extremely responsive. Working together was seamless and the results speak for themselves!"`,
+        author: "LOIS T. REIMER",
+        role: "GRAPHIC DESIGN",
+        img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
+      }
+    ];
+
+    function setTestimonial(index) {
+      const data = testimonials[index];
+      document.getElementById('testimonialText').innerText = data.quote;
+      document.getElementById('testimonialAuthor').innerText = data.author;
+      document.getElementById('testimonialRole').innerText = data.role;
+      document.getElementById('testimonialImg').src = data.img;
+
+      const dots = document.querySelectorAll('.testi-dot');
+      dots.forEach((dot, i) => {
+        if(i === index) {
+          dot.classList.replace('bg-white/40', 'bg-brandYellow');
+        } else {
+          dot.classList.replace('bg-brandYellow', 'bg-white/40');
+        }
+      });
+    }
+
+    // Download CV Functionality
+    function handleDownloadCV() {
+      const cvUrl = "<?= PROFILE_CONFIG.cvUrl ?>";
+      if (cvUrl && cvUrl.indexOf('http') !== -1) {
+        window.open(cvUrl, '_blank');
+      } else {
+        alert("Mengunduh CV Dody Wijaya...");
+      }
+    }
+
+    // Interactive Bulb Click Animation
+    function triggerBulbIdea(element) {
+      element.style.transform = "scale(1.25) rotate(10deg)";
+      element.style.transition = "transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+      
+      const bodyGroup = element.querySelector('.animated-bulb-body');
+      if (bodyGroup) {
+        bodyGroup.style.filter = "drop-shadow(0 0 45px #FFE600) drop-shadow(0 0 65px #FFFFFF)";
+      }
+
+      setTimeout(() => {
+        element.style.transform = "";
+        if (bodyGroup) bodyGroup.style.filter = "";
+      }, 400);
+    }
+
+    // Contact Form Backend Submission
+    function submitForm(event) {
+      event.preventDefault();
+      const submitBtn = document.getElementById('submitBtn');
+      const status = document.getElementById('formStatus');
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = "SENDING...";
+
+      const formData = {
+        name: document.getElementById('formName').value,
+        email: document.getElementById('formEmail').value,
+        subject: document.getElementById('formSubject').value,
+        message: document.getElementById('formMessage').value
+      };
+
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run
+          .withSuccessHandler((res) => {
+            status.classList.remove('hidden', 'text-red-500');
+            status.classList.add('text-green-400');
+            status.innerText = res.message;
+            document.getElementById('contactForm').reset();
+            submitBtn.disabled = false;
+            submitBtn.innerText = "SEND MESSAGE";
+          })
+          .withFailureHandler((err) => {
+            status.classList.remove('hidden', 'text-green-400');
+            status.classList.add('text-red-500');
+            status.innerText = "Terjadi kesalahan. Silakan coba lagi.";
+            submitBtn.disabled = false;
+            submitBtn.innerText = "SEND MESSAGE";
+          })
+          .processContactForm(formData);
+      } else {
+        setTimeout(() => {
+          status.classList.remove('hidden', 'text-red-500');
+          status.classList.add('text-green-400');
+          status.innerText = "Terima kasih! Pesan Anda berhasil dikirim.";
+          document.getElementById('contactForm').reset();
+          submitBtn.disabled = false;
+          submitBtn.innerText = "SEND MESSAGE";
+        }, 800);
+      }
+    }
+  </script>
 </body>
 </html>
