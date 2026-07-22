@@ -217,12 +217,13 @@
         I provide consulting and solutions services for customers of all sizes, specializing in the enterprise ICT industry. Committed to driving growth and enhancing operational efficiency through innovative solutions.
       </p>
 
-      <!-- Download CV Action Button -->
-      <div class="flex items-center gap-6">
-        <button onclick="handleDownloadCV()" class="px-7 py-3.5 bg-brandYellow text-black font-extrabold text-xs uppercase tracking-wider hover:bg-white transition transform hover:-translate-y-1 shadow-2xl flex items-center gap-2">
-          <i class="fa-solid fa-file-arrow-down"></i> DOWNLOAD CV
-        </button>
-      </div>
+      <!-- Direct Link Model for CV Download -->
+      <a href="<?= PROFILE_CONFIG.cvUrl ?>" 
+         target="_blank" 
+        rel="noopener noreferrer" 
+        class="px-4 py-2.5 bg-brandYellow text-black font-bold text-xs uppercase tracking-wider hover:bg-white transition transform hover:-translate-y-1 shadow-md inline-flex items-center gap-2 w-max">
+       <i class="fa-solid fa-file-arrow-down"></i> DOWNLOAD CV
+      </a>
 
       <!-- ELEMEN BOHLAM BERSINAR & BERGERAK -->
       <div class="absolute bottom-6 left-6 z-20 animated-bulb-wrapper cursor-pointer group" 
@@ -273,7 +274,7 @@
       
       <!-- Interactive Floating Portrait (Google Drive Direct Link Fixed) -->
       <div class="relative z-10 img-float max-w-xs sm:max-w-md">
-        <img src="https://lh3.googleusercontent.com/d/13Rlw8IMieH2bOrbISDBrG3IIJ9-Hd2Sc" 
+        <img src="https://lh3.googleusercontent.com/d/13Rlw8IMieH2bOrbISDBrG3IIJ9-Hd2Sc?auto=format&fit=crop&w=800&q=80" 
              alt="Dody Wijaya Profile" 
              class="w-full h-auto object-cover rounded-3xl shadow-2xl border-4 border-black/10 transform hover:scale-105 transition duration-500 cursor-pointer">
       </div>
@@ -295,7 +296,7 @@
         <div class="relative mx-auto max-w-sm img-float-reverse">
           <div class="absolute inset-0 border-2 border-dashed border-brandBlue rounded-full transform -rotate-6 scale-105"></div>
           <!-- Google Drive Direct Link Fixed -->
-          <img src="https://lh3.googleusercontent.com/d/1C04p8ua7XpKPd4hE-uQF0o9TfG8wk07B" 
+          <img src="https://lh3.googleusercontent.com/d/1C04p8ua7XpKPd4hE-uQF0o9TfG8wk07B?auto=format&fit=crop&w=800&q=80" 
                alt="About Portrait" 
                class="rounded-3xl shadow-2xl relative z-10 w-full object-cover aspect-[4/5] hover:scale-105 transition duration-500">
         </div>
@@ -512,7 +513,7 @@
       <div class="lg:col-span-5 relative">
         <div class="relative overflow-hidden rounded-2xl shadow-2xl img-float">
           <!-- Google Drive Direct Link Fixed -->
-          <img src="https://lh3.googleusercontent.com/d/13Rlw8IMieH2bOrbISDBrG3IIJ9-Hd2Sc" alt="Contact Portrait" class="w-full h-auto object-cover">
+          <img src="https://lh3.googleusercontent.com/d/13Rlw8IMieH2bOrbISDBrG3IIJ9-Hd2Sc?auto=format&fit=crop&w=800&q=80" alt="Contact Portrait" class="w-full h-auto object-cover">
           <div class="absolute bottom-6 left-6 bg-black/80 backdrop-blur-md px-6 py-3 rounded-full flex items-center gap-3 text-white">
             <i class="fa-solid fa-phone text-brandYellow"></i>
             <span class="font-bold text-sm">+062 813 1515 7299</span>
@@ -725,7 +726,7 @@
         setTimeout(() => {
           status.classList.remove('hidden', 'text-red-500');
           status.classList.add('text-green-400');
-          status.innerText = "Terima kasih! Pesan Anda berhasil dikirim.";
+          status.innerText = "Thank you! Your message has been successfully sent.";
           document.getElementById('contactForm').reset();
           submitBtn.disabled = false;
           submitBtn.innerText = "SEND MESSAGE";
