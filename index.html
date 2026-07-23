@@ -43,7 +43,7 @@
       scroll-behavior: smooth;
     }
 
-    /* 1. Floating & Rotation Animations */
+    /* Floating & Rotation Animations */
     @keyframes floatSlow {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-15px) rotate(1.5deg); }
@@ -71,7 +71,7 @@
       animation: spinSlow 12s linear infinite;
     }
 
-    /* 2. Animasi Lampu Bohlam Bersinar & Melayang */
+    /* Animasi Lampu Bohlam Bersinar & Melayang */
     @keyframes bulbFloatMove {
       0%, 100% {
         transform: translateY(0px) rotate(0deg);
@@ -217,12 +217,15 @@
         I provide consulting and solutions services for customers of all sizes, specializing in the enterprise ICT industry. Committed to driving growth and enhancing operational efficiency through innovative solutions.
       </p>
 
-      <!-- Tombol Download CV Ringkas & Langsung Mengunduh File PDF -->
+      <!-- TOMBOL DOWNLOAD CV (Link Direct Sharing Google Drive Ditempel Langsung) -->
       <div class="flex items-center gap-6">
-        <button onclick="handleDownloadCV()" 
-                class="px-5 py-2.5 bg-brandYellow text-black font-extrabold text-xs uppercase tracking-wider hover:bg-white transition transform hover:-translate-y-1 shadow-2xl inline-flex items-center gap-2 w-max cursor-pointer">
+        <a href="https://drive.google.com/uc?export=download&id=1SP7w8trc5eIT71xyR3QpWVe6JKDoExCa" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           download="CV_Dody_Wijaya.pdf"
+           class="px-5 py-2.5 bg-brandYellow text-black font-extrabold text-xs uppercase tracking-wider hover:bg-white transition transform hover:-translate-y-1 shadow-2xl inline-flex items-center gap-2 w-max cursor-pointer">
           <i class="fa-solid fa-file-arrow-down"></i> DOWNLOAD CV
-        </button>
+        </a>
       </div>
 
       <!-- ELEMEN BOHLAM BERSINAR & BERGERAK -->
@@ -654,38 +657,6 @@
           dot.classList.replace('bg-brandYellow', 'bg-white/40');
         }
       });
-    }
-
-    // FUNGSI UTAMA: UNTUK MENGUNDUH FILE CV SECARA LANGSUNG DARI BASE64
-    function handleDownloadCV() {
-      const cvBase64 = "<?= PROFILE_CONFIG.cvBase64 ?>";
-      const cvUrl = "<?= PROFILE_CONFIG.cvUrl ?>";
-
-      if (cvBase64 && cvBase64.length > 100) {
-        try {
-          // Konversi Base64 ke Blob File PDF Murni
-          const byteCharacters = atob(cvBase64);
-          const byteNumbers = new Array(byteCharacters.length);
-          for (let i = 0; i < byteCharacters.length; i++) {
-            byteNumbers[i] = byteCharacters.charCodeAt(i);
-          }
-          const byteArray = new Uint8Array(byteNumbers);
-          const blob = new Blob([byteArray], { type: 'application/pdf' });
-
-          // Membuat URL Sementara & Memicu Unduhan File
-          const link = document.createElement('a');
-          link.href = URL.createObjectURL(blob);
-          link.download = "CV_Dody_Wijaya.pdf";
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-          URL.revokeObjectURL(link.href);
-        } catch (err) {
-          window.open(cvUrl, '_blank');
-        }
-      } else {
-        window.open(cvUrl, '_blank');
-      }
     }
 
     // Interactive Bulb Click Animation
