@@ -217,13 +217,15 @@
         I provide consulting and solutions services for customers of all sizes, specializing in the enterprise ICT industry. Committed to driving growth and enhancing operational efficiency through innovative solutions.
       </p>
 
-      <!-- Tombol Download CV Ringkas & Buka di Tab Baru -->
-       <a href="<?= PROFILE_CONFIG.cvUrl ?>" 
-         target="_blank" 
-         rel="noopener noreferrer" 
-         class="px-4 py-2.5 bg-brandYellow text-black font-extrabold text-xs uppercase tracking-wider hover:bg-white transition transform hover:-translate-y-1 shadow-2xl inline-flex items-center gap-1.5 w-max">
-       <i class="fa-solid fa-file-arrow-down"></i> DOWNLOAD CV
-      </a>
+      <!-- Download CV Action Button (Compact Ringkas & Buka Tab Baru) -->
+      <div class="flex items-center gap-6">
+        <a href="<?= PROFILE_CONFIG.cvUrl ?>" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="px-5 py-2.5 bg-brandYellow text-black font-extrabold text-xs uppercase tracking-wider hover:bg-white transition transform hover:-translate-y-1 shadow-2xl inline-flex items-center gap-2 w-max">
+          <i class="fa-solid fa-file-arrow-down"></i> DOWNLOAD CV
+        </a>
+      </div>
 
       <!-- ELEMEN BOHLAM BERSINAR & BERGERAK -->
       <div class="absolute bottom-6 left-6 z-20 animated-bulb-wrapper cursor-pointer group" 
@@ -272,14 +274,14 @@
     <!-- Hero Right: Yellow Section -->
     <div class="lg:col-span-5 bg-brandYellow p-8 sm:p-12 flex items-end justify-center relative min-h-[450px]">
       
-      <!-- Interactive Floating Portrait (Google Drive Direct Link Fixed) -->
+      <!-- Interactive Floating Portrait (Google Drive Direct Stream Link) -->
       <div class="relative z-10 img-float max-w-xs sm:max-w-md">
-        <img src="https://lh3.googleusercontent.com/d/13Rlw8IMieH2bOrbISDBrG3IIJ9-Hd2Sc?auto=format&fit=crop&w=800&q=80" 
+        <img src="https://lh3.googleusercontent.com/d/13Rlw8IMieH2bOrbISDBrG3IIJ9-Hd2Sc" 
              alt="Dody Wijaya Profile" 
              class="w-full h-auto object-cover rounded-3xl shadow-2xl border-4 border-black/10 transform hover:scale-105 transition duration-500 cursor-pointer">
       </div>
 
-      <!-- HERO SOCIAL MEDIA LINKS (Font Awesome class fa-linkedin-in Fixed) -->
+      <!-- HERO SOCIAL MEDIA LINKS (Font Awesome fa-linkedin-in fixed) -->
       <div class="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-20">
         <a href="<?= PROFILE_CONFIG.socials.linkedin ?>" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="w-9 h-9 rounded-full bg-black/10 hover:bg-black hover:text-brandYellow flex items-center justify-center transition text-sm"><i class="fa-brands fa-linkedin-in"></i></a>
         <a href="<?= PROFILE_CONFIG.socials.instagram ?>" target="_blank" rel="noopener noreferrer" title="Instagram" class="w-9 h-9 rounded-full bg-black/10 hover:bg-black hover:text-brandYellow flex items-center justify-center transition text-sm"><i class="fa-brands fa-instagram"></i></a>
@@ -295,8 +297,8 @@
       <div class="lg:col-span-5 relative">
         <div class="relative mx-auto max-w-sm img-float-reverse">
           <div class="absolute inset-0 border-2 border-dashed border-brandBlue rounded-full transform -rotate-6 scale-105"></div>
-          <!-- Google Drive Direct Link Fixed -->
-          <img src="https://lh3.googleusercontent.com/d/1C04p8ua7XpKPd4hE-uQF0o9TfG8wk07B?auto=format&fit=crop&w=800&q=80" 
+          <!-- Google Drive Direct Stream Link -->
+          <img src="https://lh3.googleusercontent.com/d/1C04p8ua7XpKPd4hE-uQF0o9TfG8wk07B" 
                alt="About Portrait" 
                class="rounded-3xl shadow-2xl relative z-10 w-full object-cover aspect-[4/5] hover:scale-105 transition duration-500">
         </div>
@@ -387,20 +389,20 @@
           <h3 class="text-2xl font-bold mb-8">My Skill:</h3>
           <div class="space-y-6">
             <div>
-              <div class="flex justify-between mb-2 font-bold text-sm"><span>HTML</span><span>85%</span></div>
-              <div class="w-full bg-blue-900 rounded-full h-2.5 overflow-hidden"><div class="bg-brandRed h-2.5 rounded-full transition-all duration-1000" style="width: 85%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-2 font-bold text-sm"><span>WORDPRESS</span><span>75%</span></div>
-              <div class="w-full bg-blue-900 rounded-full h-2.5 overflow-hidden"><div class="bg-brandRed h-2.5 rounded-full transition-all duration-1000" style="width: 75%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-2 font-bold text-sm"><span>JAVASCRIPT</span><span>95%</span></div>
+              <div class="flex justify-between mb-2 font-bold text-sm"><span>ENTERPRISE SOLUTIONS</span><span>95%</span></div>
               <div class="w-full bg-blue-900 rounded-full h-2.5 overflow-hidden"><div class="bg-brandRed h-2.5 rounded-full transition-all duration-1000" style="width: 95%"></div></div>
             </div>
             <div>
-              <div class="flex justify-between mb-2 font-bold text-sm"><span>UI/UX DESIGN</span><span>85%</span></div>
-              <div class="w-full bg-blue-900 rounded-full h-2.5 overflow-hidden"><div class="bg-brandRed h-2.5 rounded-full transition-all duration-1000" style="width: 85%"></div></div>
+              <div class="flex justify-between mb-2 font-bold text-sm"><span>ICT CONSULTING</span><span>90%</span></div>
+              <div class="w-full bg-blue-900 rounded-full h-2.5 overflow-hidden"><div class="bg-brandRed h-2.5 rounded-full transition-all duration-1000" style="width: 90%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2 font-bold text-sm"><span>BUSINESS STRATEGY</span><span>88%</span></div>
+              <div class="w-full bg-blue-900 rounded-full h-2.5 overflow-hidden"><div class="bg-brandRed h-2.5 rounded-full transition-all duration-1000" style="width: 88%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2 font-bold text-sm"><span>PROJECT MANAGEMENT</span><span>92%</span></div>
+              <div class="w-full bg-blue-900 rounded-full h-2.5 overflow-hidden"><div class="bg-brandRed h-2.5 rounded-full transition-all duration-1000" style="width: 92%"></div></div>
             </div>
           </div>
         </div>
@@ -408,15 +410,15 @@
         <div class="space-y-8">
           <div class="flex items-start gap-4">
             <div class="text-brandRed text-2xl mt-1"><i class="fa-solid fa-graduation-cap"></i></div>
-            <div><h4 class="text-xl font-bold">Web Development (2010-2012)</h4><p class="text-white/70 text-sm">International Design Institute</p></div>
+            <div><h4 class="text-xl font-bold">Enterprise Solution Consultant</h4><p class="text-white/70 text-sm">Enterprise ICT Industry Specialist</p></div>
           </div>
           <div class="flex items-start gap-4">
             <div class="text-brandRed text-2xl mt-1"><i class="fa-solid fa-award"></i></div>
-            <div><h4 class="text-xl font-bold">SEO Optimization (2010-2012)</h4><p class="text-white/70 text-sm">International Design Institute</p></div>
+            <div><h4 class="text-xl font-bold">Senior ICT Solution Architect</h4><p class="text-white/70 text-sm">Operational Strategy & Growth</p></div>
           </div>
           <div class="flex items-start gap-4">
-            <div class="text-brandRed text-2xl mt-1"><i class="fa-solid fa-palette"></i></div>
-            <div><h4 class="text-xl font-bold">Graphic Designer (2010-2012)</h4><p class="text-white/70 text-sm">International Design Institute</p></div>
+            <div class="text-brandRed text-2xl mt-1"><i class="fa-solid fa-diagram-project"></i></div>
+            <div><h4 class="text-xl font-bold">Business Development Advisor</h4><p class="text-white/70 text-sm">Digital Transformation</p></div>
           </div>
         </div>
       </div>
@@ -512,11 +514,11 @@
 
       <div class="lg:col-span-5 relative">
         <div class="relative overflow-hidden rounded-2xl shadow-2xl img-float">
-          <!-- Google Drive Direct Link Fixed -->
-          <img src="https://lh3.googleusercontent.com/d/13Rlw8IMieH2bOrbISDBrG3IIJ9-Hd2Sc?auto=format&fit=crop&w=800&q=80" alt="Contact Portrait" class="w-full h-auto object-cover">
+          <!-- Google Drive Direct Stream Link -->
+          <img src="https://lh3.googleusercontent.com/d/13Rlw8IMieH2bOrbISDBrG3IIJ9-Hd2Sc" alt="Contact Portrait" class="w-full h-auto object-cover">
           <div class="absolute bottom-6 left-6 bg-black/80 backdrop-blur-md px-6 py-3 rounded-full flex items-center gap-3 text-white">
             <i class="fa-solid fa-phone text-brandYellow"></i>
-            <span class="font-bold text-sm">+62 813 1515 7299</span>
+            <span class="font-bold text-sm">+062 813 1515 7299</span>
           </div>
         </div>
       </div>
@@ -563,7 +565,7 @@
   <section class="py-16 bg-brandBlue text-white text-center">
     <div class="max-w-4xl mx-auto px-4">
       <h2 class="text-4xl sm:text-5xl font-syne font-black mb-4">Let's build something together</h2>
-      <p class="text-white/80 max-w-xl mx-auto mb-8">At Dumty we specialize in designing, building, shipping and scaling beautiful products.</p>
+      <p class="text-white/80 max-w-xl mx-auto mb-8">At Pride we specialize in designing, building, shipping and scaling enterprise solution products.</p>
       <a href="#contact" class="inline-block px-8 py-4 bg-brandYellow text-black font-extrabold text-xs uppercase tracking-widest hover:bg-white transition transform hover:scale-105">
         CONTACT US
       </a>
@@ -576,7 +578,7 @@
       <div class="text-2xl font-syne font-black">Pride</div>
       <div class="text-xs text-gray-400">© 2026 Pride. All Rights Reserved. Design By Dody Wijaya</div>
       
-      <!-- FOOTER SOCIAL MEDIA LINKS (Font Awesome class fa-linkedin-in Fixed) -->
+      <!-- FOOTER SOCIAL MEDIA LINKS (fa-linkedin-in fixed) -->
       <div class="flex space-x-4 text-sm text-gray-400">
         <a href="<?= PROFILE_CONFIG.socials.linkedin ?>" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="hover:text-brandYellow transition"><i class="fa-brands fa-linkedin-in"></i></a>
         <a href="<?= PROFILE_CONFIG.socials.instagram ?>" target="_blank" rel="noopener noreferrer" title="Instagram" class="hover:text-brandYellow transition"><i class="fa-brands fa-instagram"></i></a>
@@ -662,16 +664,6 @@
       });
     }
 
-    // Download CV Functionality
-    function handleDownloadCV() {
-      const cvUrl = "<?= PROFILE_CONFIG.cvUrl ?>";
-      if (cvUrl && cvUrl.indexOf('http') !== -1) {
-        window.open(cvUrl, '_blank');
-      } else {
-        alert("Mengunduh CV Dody Wijaya...");
-      }
-    }
-
     // Interactive Bulb Click Animation
     function triggerBulbIdea(element) {
       element.style.transform = "scale(1.25) rotate(10deg)";
@@ -726,7 +718,7 @@
         setTimeout(() => {
           status.classList.remove('hidden', 'text-red-500');
           status.classList.add('text-green-400');
-          status.innerText = "Thank you! Your message has been successfully sent.";
+          status.innerText = "Terima kasih! Pesan Anda berhasil dikirim.";
           document.getElementById('contactForm').reset();
           submitBtn.disabled = false;
           submitBtn.innerText = "SEND MESSAGE";
